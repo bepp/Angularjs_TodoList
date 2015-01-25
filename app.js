@@ -83,6 +83,17 @@ angular.module("App", [])
 		});
 	};
 
+	// 全完了TODOを消去
+	$scope.removeDoneTodo = function() {
+		var oldTodos = $scope.todos;
+		$scope.todos = [];
+		angular.forEach(oldTodos, function(todo) {
+			if(!todo.done) {
+				$scope.todos.push({title: todo.title, done: todo.done});
+			}
+		});
+	};
+
 }])
 .directive("mySelect", [function() {
 	return function(scope, $el, attrs) {
