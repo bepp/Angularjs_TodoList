@@ -25,7 +25,7 @@
 
 		<!-- ボタン -->
 		<div>
-			<button>全選択/解除</button>
+			<button ng-click="checkAll()">全選択/解除</button>
 			<button ng-click="changeFilter()" ng-disabled="disabledButton()">全部 <span>{{allCount}}</span></button>
 			<button ng-click="changeFilter(filter.remaining)" ng-disabled="disabledButton(filter.remaining)">未完了 <span>{{remainingCount}}</span></button>
 			<button ng-click="changeFilter(filter.done)" ng-disabled="disabledButton(filter.done)">完了 <span>{{doneCount}}</span></button>

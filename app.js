@@ -37,7 +37,7 @@ angular.module("App", [])
 		else {
 			return false;
 		}
-	}
+	};
 
 	// フィルタ関数の取得
 	// 参考:https://docs.angularjs.org/api/ng/filter/filter
@@ -72,7 +72,16 @@ angular.module("App", [])
 			$scope.editing.title = originalTitle;
 		}
 		$scope.editing = originalTitle = null;
-	}
+	};
+
+	// 全選択・解除
+	$scope.checkAll = function() {
+		var state = !!$scope.remainingCount;
+
+		angular.forEach($scope.todos, function(todo) {
+			todo.done = state;
+		});
+	};
 
 }])
 .directive("mySelect", [function() {
