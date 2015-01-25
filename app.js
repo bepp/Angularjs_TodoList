@@ -1,5 +1,5 @@
 angular.module("App", [])
-.controller("MainController", ["$scope", function($scope) {
+.controller("MainController", ["$scope", "$filter", function($scope, $filter) {
 	// TODOリスト
 	$scope.todos = [];
 
@@ -38,4 +38,20 @@ angular.module("App", [])
 			return false;
 		}
 	}
+
+	// フィルタ関数の取得
+	// 参考:https://docs.angularjs.org/api/ng/filter/filter
+	var where = $filter("filter");
+	// todos変更のウォッチ
+	// 参考:https://docs.angularjs.org/api/ng/type/$rootScope.Scope
+	$scope.$watch("todos", function(todos) {
+		var length = todos.length;
+
+		// 全件数モデル
+		$scope.allCount = length;
+		// 完了件数モデル
+		$scope.doneCount = where(todos, $scope.filter.done).length;
+		// 未完了件数モデル
+		$scope.remainingCount = length - $scope.doneCount;
+	}, true);
 }]);

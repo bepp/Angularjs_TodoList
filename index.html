@@ -25,10 +25,10 @@
 
 		<!-- ボタン -->
 		<div>
-			<button>全て完了/未完了</button>
-			<button ng-click="changeFilter()" ng-disabled="disabledButton()">全部 <span>{{todos.length}}</span></button>
-			<button ng-click="changeFilter(filter.remaining)" ng-disabled="disabledButton(filter.remaining)">未完了 <span>2</span></button>
-			<button ng-click="changeFilter(filter.done)" ng-disabled="disabledButton(filter.done)">完了 <span>1</span></button>
+			<button>全選択/解除</button>
+			<button ng-click="changeFilter()" ng-disabled="disabledButton()">全部 <span>{{allCount}}</span></button>
+			<button ng-click="changeFilter(filter.remaining)" ng-disabled="disabledButton(filter.remaining)">未完了 <span>{{remainingCount}}</span></button>
+			<button ng-click="changeFilter(filter.done)" ng-disabled="disabledButton(filter.done)">完了 <span>{{doneCount}}</span></button>
 			<button>完了アイテムを全て削除</button>
 		</div>
 
