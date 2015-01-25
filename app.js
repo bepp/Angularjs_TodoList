@@ -54,4 +54,36 @@ angular.module("App", [])
 		// 未完了件数モデル
 		$scope.remainingCount = length - $scope.doneCount;
 	}, true);
+
+	// 編集前のタイトル
+	var originalTitle;
+	// 編集中のTODOモデルを示すモデル
+	$scope.editing = null;
+
+	// 任意のtodoモデルを編集中にする
+	$scope.editTodo = function(todo) {
+		originalTitle = todo.title;
+		$scope.editing = todo;
+	};
+
+	// 編集中を解除する
+	$scope.doneEdit = function(todoForm) {
+		if(todoForm.$invalid) {
+			$scope.editing.title = originalTitle;
+		}
+		$scope.editing = originalTitle = null;
+	}
+
+}])
+.directive("mySelect", [function() {
+	return function(scope, $el, attrs) {
+		// scope	: 現在の$scopeオブジェクト
+		// $el		: jqLiteオブジェクト(参考:http://js.studio-kingdom.com/angularjs/ng_global_apis/angular_element)
+		// attrs	: DOM属性のハッシュ
+		scope.$watch(attrs.mySelect, function(val) {
+			if(val) {
+				$el[0].select();
+			}
+		});
+	};
 }]);
